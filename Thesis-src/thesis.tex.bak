@@ -1,0 +1,801 @@
+\documentclass{mcmthesis}
+\mcmsetup{CTeX = true,   % 使用 CTeX 套装时，设置为 true
+        tcn = 60633, problem = A,
+        sheet = true, titleinsheet = true, keywordsinsheet = true,
+        titlepage = false, abstract = true}
+\usepackage{times}%设置字体宏包 times
+
+%表格控制
+\usepackage{booktabs}
+
+%数学包
+\usepackage{amsmath}
+%\usepackage{amssymb}
+
+%图像功能包
+\usepackage{float}%调整位置
+\usepackage{graphicx}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\usepackage{lipsum}
+\title{Kariba: How to Manage?}
+\author{Wei Liu \and Yifei Jin \and Zhiqiang Yang}
+\date{Jan. 2017}
+\allowdisplaybreaks[4]
+\usepackage{indentfirst}%首行缩进
+\RequirePackage[titles]{tocloft}
+%\renewcommand{\cftdot}{$\dot$}
+\renewcommand{\cftdotsep}{3}
+\renewcommand{\cftsecdotsep}{\cftdotsep}
+
+\begin{document}
+\linespread{1.1}\selectfont%调整行间距
+\begin{abstract}
+  The risk of Kariba Dam's breaking is attracting  people's attention. The local people have been put in danger since the dam can break at any time. To help residents there out of the crisis, our goal is to evaluate the three solutions and establish a series of models to build a new dam system and make sure it works well.
+
+  We firstly find the data and see the literature related. With these valuable data we find supporting our work, we are able to provide an overview of potential cost and benefits associated with each option and we easily draw the conclusion that \textbf{the construction of 20 small dams is the most cost-effective}.
+
+  After we finish the analysis, we start establishing models for removing the dam and replacing it with a series of small dams along the river. At first, we assume the bottom of the lake is a part of a circle. We process the map data and the result is a little different from that in reality. So we correct our assumption and regard the bottom of the lake is like a water droplet on the plane. Then we figure out the volume which is nearly the same as that in reality.
+
+  We establish several other models later. The three small dams model aims to find proper locations of the dam built over the lake. Then we analyse the impacts of number of dams on costs and benefits. Finally we determine to build ten small dams along the river.
+
+  We also need to provide strategies to manage the dams. We introduce a model to forecast the local hydrology situation and establish Ideal Year model to simplify the procedure. The result is gratifying, and we solve the problem and provide strategy for local people to manage the dams.
+
+
+  Of course there might be some errors in our strategy, we still believe we have accomplished the given assignments.
+  \\
+  \begin{keywords}
+  Dam Repairing; Flood Control Strategy;Efficient Use of Energy
+  \end{keywords}
+\end{abstract}
+
+\maketitle
+
+\tableofcontents
+
+\vfill
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Background}
+
+
+Zambezi River Basin is the most valuable resource in Africa. Kariba Dam locates at the Zambia River Basin between Zambia and Zimbabwe. About $3400m^3$ of water flows past per second. So it provides lots of energy for the local people. After the complete of the dam, the reservoir supplies 1626 megawatts (2,181,000hp) of electricity to the parts of both Zambia and Zimbabwe and generates 6400 gigawatt-hours (23,000TJ) per annum\cite{Karibawiki1}. However, due to the special natural and cultural environment, the climate change and increasing demands for water resource, for example, the situation of the dam is getting grim. The major issue is that there is a potential risk of dam breaking, which may result in 1.8 million deaths possibly in 8 hours and inevitably in 10 hours\cite{IRMSAIMPACT}.
+
+So there is a urgent need to find a strategy to remove the danger of dam breaking.
+
+
+\subsection{Literature Reference}
+
+
+According to a report we find from the official website of the Institute of Risk Management of South Africa(IRMSA), the Kariba Dam is in a dangerous state. In 1959, the dam was seemed to be built on a solid bed of basalt. However, recent research shows that the torrents from the spillway have eroded that bedrock, carving a vast crater that has undercut the foundations of the Kariba Dam\cite{IRMSAIMPACT}.
+
+Engineers also give the warning that the whole dam will collapse if it is not urgently repaired. If so, a wall of water like a tsunami would rip through the Zambezi valley, which is a great threat for local people. Besides, the electricity supply would be cut down.
+
+The Zambezi River Authority (ZRA) is interested in three options as follows to remove potential danger:
+
+\begin{itemize}
+  \item \textbf{Option1} Repairing the existing Kariba Dam
+  \item \textbf{Option2} Rebuilding the existing Kariba Dam
+  \item \textbf{Option3} Removing the Kariba Dam and replacing it with a series of ten to
+twenty smaller dams along the Zambezi River.
+\end{itemize}
+
+\subsection{Restatement of the Problem}
+
+
+We are required to establish some models to evaluate these three options above and provide sufficient details so that we can describe the potential costs and profits related. Then, we are expected to discuss about removing the Kariba Dam and replacing it with a series of ten to twenty smaller dams along the Zambezi river. We will set up a new system and we must make sure that the new system has the same water management capacity. In the mean time, we will provide the same or even higher level of protection and management option. Because the data related to \textbf{Option1} and \textbf{Option2} are easy to obtain and analyse, our focus will be on \textbf{Option3}.
+
+To settle the problems above, we will proceed as follows:
+
+\begin{itemize}
+  \item \textbf{Assess the Three Options.} We first find sufficient data supporting us to assess the options we mentioned above.
+  \item \textbf{Find Solution to Replace the Dam.} We will focus our attention on \textbf{Option3} and find solution.
+  \item \textbf{List Our Assumptions.} Through listing assumptions, we can narrow our area of research and simplify the complex issue.
+  \item \textbf{Describe Symbols.} We may use some essential symbols to clarify our models.
+  \item \textbf{Establish Models.} It is the core of our work. To solve the problems, we will establish a series of models.
+  \item \textbf{Analyse the Results.} After we establish the models, we will analyse them and draw a conclusion.
+  \item \textbf{State Shortage.} There might be some defects in our process, so we will discuss our deficiencies in this section.
+\end{itemize}
+
+\section{Assessment of the Three Options}
+
+We are required to assess the three options in order to provide detailed information and potential cost and profit in each option.
+
+To consider it in a reasonable way, we need more information of the Kariba Dam. After gathering the details, we have known a lot about the region, such as economy, natural environment and the situation.
+
+Zambia's per capita income is about one-sixth of China's per capita income\cite{Zambia's per capita income}. That's to say, we should put property loss the option may cause in the first place to consider. So we search on the Internet to find out how much it may cost to repair or rebuild a dam. According to the data we get, repairing the dam costs 250 million US dollars\cite{repairing cost}. Besides, the construction of 210MW hydropower station costs about 735 million yuan(10 small dams strategy)\cite{small dam1}, while 100MW hydropower station costs about 300 million yuan(20 small dams strategy)\cite{small dam2}.
+
+According to the RMB exchange rate of 6.87 against the US dollar, the construction of 10 small dams needs 1.07 billion US dollars and the construction of 20 small dams needs 870 million US dollars.
+
+On the one hand, if these dams can be constructed at the same time, it will take about one year to complete\cite{small dam2}. According to the reservoir capacity of $1.010*10^{11}m^3$ and the discharge of $3400m^3/s$, it takes 344 days to complete the drainage. So the total time it will take is 2 years.
+
+On the other hand, calculated according to local electricity price\cite{electricity price}, Kariba Dam gains 1.04 billion US dollars every year.
+
+Based on the above data, we can draw conclusions as follows:
+
+\begin{table}[H]
+  \centering
+  \textbf{\caption{Assessment}}
+  \begin{tabular}{c c c c c}
+    \midrule[1pt]
+    \textbf{Option} & \textbf{Repair} & \textbf{Rebuild} & \textbf{10Dams} & \textbf{20Dams} \\
+    \hline
+    Cost(Billion USD) & 0.25 & 5.00 & 1.07 & 0.87 \\
+    Time Cost(Year) & 3.50 & 6.50 & 2.00 & 2.00 \\
+    Income/Year(Billion USD) & 1.04 & 1.04 & 1.04 & 1.04 \\
+    Loss(Billion USD) & 3.13 & 6.78 & 2.08 & 2.08 \\
+    Total(Billion USD) & 3.38 & 11.7 & 3.16 & 2.96 \\
+    \midrule[1pt]
+  \end{tabular}
+  \label{Assessment}
+\end{table}
+
+Since building 20 small causes least loss, the construction of 20 small dams is the most cost-effective. And the focus of our work is to analyse and find a strategy for \textbf{Option3}.
+
+\section{Assumptions}
+
+
+In order to narrow the scope of our study, we set up the basic assumptions as follows:
+\begin{itemize}
+  \item \textbf{The bottom of the lake is round and is a part of a circle.} It is our first assumption of the section shape of the lake.
+  \item \textbf{The bottom of the lake is like the surface of a water droplet on a plane.} It is our second assumption to correct the assumption we make before.
+  \item \textbf{No islands in the Kariba Lake.}
+  \item \textbf{The shape of the lake in the image is a part of an arc.} The overall appearance of the Kariba Lake is a part of circle exactly.
+  \item \textbf{The cost of management and maintenance per unit of time per hydropower station is the same.}
+  \item \textbf{Water flow is related to wind speed, temperature and precipitation in the last three months.}
+  \item \textbf{The water flow in an \textit{ideal year} is in accordance with the general rules of seasonal Zambezi River Basin. }
+\end{itemize}
+
+\section{Symbol Description}
+
+
+\begin{table}[H]
+  \centering
+  \textbf{\caption{Notation}}
+  \begin{tabular}{c c c}
+    \midrule[1pt]
+    \textbf{Symbols} & \textbf{Definition} & \textbf{Unit} \\
+    \hline
+    $d$ & Width of the lake section & $m$ \\
+    $h$ & Height of the lake section & $m$ \\
+    $a$ & Central angle of the sector & $m$ \\
+    $R$ & Diameter of the sector & $m$ \\
+    $(x_0,y_0)$ & Coordinates of the center of the circle &   \\
+    $r$ & Radius of the circle & $m$ \\
+    $edge$ & Two-dimensional matrix variable &  \\
+    $i$ & Radian &  \\
+    $k$ & Slope of the straight line &  \\
+    $y$ & Column vector &  \\
+    $S$ & Area of each cross section of the lake & $m^2$ \\
+    $V_1$ & Volume of the lake we figure out the first time & $m^3$ \\
+    $V_2$ & Volume of the lake we figure out the second time & $m^3$ \\
+    $hm$ & Maximum depth of the lake section & $m$ \\
+    $C$ & Capacity of the hydropower station & $kW$ \\
+    $g$ & Gravity acceleration & $m/s^2$ \\
+    $Q$ & River flow & $m^3/s$ \\
+    $H$ & Height difference & $m$ \\
+    $\eta$ & Efficiency of generating electricity & \\
+    $t$ & Time & $s$ \\
+    \midrule[1pt]
+  \end{tabular}
+  \label{notation}
+\end{table}
+
+\section{The Models to Build 13 Dams}
+
+We will only establish models for \textbf{Option3}, because it is easy to get data for \textbf{Option1} and \textbf{Option2}.
+
+\subsection{Model \uppercase\expandafter{\romannumeral1}: Establish the Lake Model}
+
+\subsubsection{Approximate the Cross Section of the Lake}
+
+To evaluate the replacing of the Kariba Dam, we first regard the bottom of the lake as a curved surface cut from a circle to simplify the problem. Then, we figure out some essential parameter of the lake bottom, such as area, depth and volume.
+
+Let the width of the lake be $d$, the height be $h$, the radius of the sector be $x$.
+
+From our assumptions, we know the cross section of the lake is as follows:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=10cm]{figures/PythagorasTheorem1.png}\\
+  \textbf{\caption{The cross section of the lake}}
+  \label{PythagorasTheorem1}
+\end{figure}
+
+Then, we enter the expression of \textbf{Pythagoras Theorem} into the software \textit{Mathematica}. We have:
+
+$$Solve\left[\frac{d^2}{4}+\left(x-h\right)^2==x^2 ,x\right]$$
+$$\left\{\left\{x\to\frac{d^2+4h^2}{8h}\right\}\right\}$$
+
+%\begin{figure}[!htbp]
+%  \centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=6cm]{figures/PythagorasTheorem2.png}\\
+%  %\textbf{\caption{The Pythagoras expression}}
+%  \label{PythagorasTheorem2}
+%\end{figure}
+
+Let the central angle of the sector be $a$, the diameter of the sector be $R$, and we know:
+
+$$Solve\left[tan\left[\frac{a}{2}\right]==\frac{d}{2R-2h} ,a\right]$$
+$$\left\{\left\{a\to ConditionalExpression\left[2\left(-arctan\left[\frac{d}{2h-2R}\right]+\pi C[1]\right), C[1]\in Integers\right]\right\}\right\}$$
+%\begin{figure}[!htbp]
+%  \centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=12cm]{figures/PythagorasTheorem3.png}\\
+%  %\textbf{\caption{The angle expression}}
+%  \label{PythagorasTheorem3}
+%\end{figure}
+
+Simplify the expressions above. So, the result--the expression of the section's area is:
+
+$$Simplify\left[-2xtan^{-1}\left(\frac{d}{2h-2x}\right)+\frac{dh}{2}-\frac{dx}{2}\right]/.\left\{a\to2-tan^{-1}\left(\frac{d}{2h-2R}\right),x\to\frac{d^2+4h^2}{8h}\right\}$$
+$$Out[1]=\frac{1}{2}\left(d\left(h-\frac{d^2+4h^2}{8h}\right)-\frac{\left(d^2+4h^2\right)arctan\left[\frac{d}{2h-\frac{d^2+4h^2}{4h}}\right]}{2h}\right)$$
+$$Simplify\left[\frac{1}{2}\left(d\left(h-\frac{d^2+4h^2}{8h}\right)-\frac{\left(d^2+4h^2\right)tan^{-1}\left[\frac{d}{2h-\frac{d^2+4h^2}{4h}}\right]}{2h}\right)\right]$$
+%$$Out[2]=\frac{-d^3+4dh^2+4\left(d^2+4h^2\right)arctan\left[\frac{4dh}{d^2-4h^2}\right]}{16h}$$
+
+
+\begin{equation}\label{Out2}
+  Out[2]=\frac{-d^3+4dh^2+4\left(d^2+4h^2\right)arctan\left[\frac{4dh}{d^2-4h^2}\right]}{16h}
+\end{equation}
+
+%\begin{figure}[!htbp]
+%  \centering
+%  % Requires \usepackage{graphicx}
+%  \includegraphics[width=12cm]{figures/PythagorasTheorem4.png}\\
+%  %\textbf{\caption{The expression of the area}}
+%  \label{PythagorasTheorem4}
+%\end{figure}
+
+\subsubsection{Process the Map Data}
+
+We intercept the map of the Kariba Lake from \textit{Google Earth}. Then, we use \textit{MATLAB} and \textit{Photoshop} to process the image. After that, we ignore the islands in the lake as we mentioned in the section \textbf{\textit{Assumption}}. Eventually we get the approximate image of the Kariba Lake.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=10cm]{figures/map3.png}\\
+  \textbf{\caption{Image of the Lake}}
+  \label{map}
+\end{figure}
+
+We import the image into \textit{MATLAB} again and convert it to two-dimensional matrix. Since we regard the shape of the lake itself as a part of circle (The overall appearance of the Kariba Lake is like an arc.), we get three point from the image in the coordinate system: $(300,530)$ $(440,330)$ $(770,150)$ to determine the equation of the circle the approximate lake arc in.
+
+Let the coordinates of the center of the circle be $(x_0,y_0)$ and radius of the circle be $r$. Then we use \textit{Mathematica} to solve the equations.
+
+\begin{align*}
+  Solve[\left(x_0-300\right)^2+\left(y_0-530\right)^2 &= r^2 \\
+  \&\&\left(x_0-440\right)^2+\left(y_0-330\right)^2 &= r^2\\
+  \&\&\left(x_0-770\right)^2+\left(y_0-150\right)^2 &= r^2]\\
+\end{align*}
+
+%$$Solve\left[\left(x_0-300\right)^2+\left(y_0-530\right)^2=r^2\&\&\left(x_0-440\right)^2+\left(y_0-330\right)^2=r^2\&\&\left(x_0-770\right)^2+\left(y_0-150\right)^2=r^2\right]$$
+
+\begin{align*}
+  Out[1]= & \left\{x_0\to\frac{31205}{34}, y_0\to\frac{55315}{68}, r\to-\frac{5\sqrt{85454629}}{68}\right\} \\
+   & \left\{x_0\to\frac{31205}{34}, y_0\to\frac{55315}{68}, r\to\frac{5\sqrt{85454629}}{68}\right\}
+\end{align*}
+
+%$$Out[1]=\left\{x_0\to\frac{31205}{34}, y_0\to\frac{55315}{68}, r\to-\frac{5\sqrt{85454629}}{68}\right\}, \left\{x_0\to\frac{31205}{34}, y_0\to\frac{55315}{68}, r\to-\frac{5\sqrt{85454629}}{68}\right\}$$
+
+So, it's easy to know the approximate expression of this approximate circle in the \textit{Cartesian Coordinate} is:
+
+\begin{equation}
+  (x-917)^2+(y-813)^2=462400
+\end{equation}
+
+After that, we program the code below to calculate the coordinates of the lake's edge. The variable $edge$ in the source code is a matrix variable. We use it to store the coordinates of the lake's edge. Variable $i$ is radian, so $k$ means slope and the expression $b=813-k*917$ is straight line analytic expression which go through the center of the circle. We let $y$ be a column vector to store the approximate value of straight line's ordinate. The loop variable $j$ is used to determine the abscissa. Our image pixel is $652*927$, so we apply the code "\textit{if y(end,1)>0\&\&y(end,1)<650}" to make sure the value of $y$ will not go out of range.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=8cm]{figures/code_coordinates.png}\\
+  \textbf{\caption{Code to Figure out the Coordinates}}
+  \label{code_coordinates}
+\end{figure}
+
+After we run the programme, the data in the matrix variable $edge$ are the coordinates of the lake's edge in the same radial ray direction from the center of the circle. We put two adjacent rows together as a group and export each group into the \textit{Cartesian Coordinate}. Then we get the image of the lake in coordinate.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=10cm]{figures/lake_coordinate.png}\\
+  \textbf{\caption{Redraw the Lake into the Coordinate}}
+  \label{lake_coordinate}
+\end{figure}
+
+\subsubsection{Figure Out the Volume of the Lake}
+
+We use another programme to figure out the distance (We have mentioned the symbol $d$ before) between each coordinate group in the same radial direction (The radial ray goes through the center of the approximate circle as we mentioned before. \textbf{The equation of the approximate circle is \textit{Expression(2)}}.). The number of the rows in the data is $48979*2=97958$, so we get code "\textit{for i=1:2:97958}" here. The code in the loop aims to figure out the distance between each two points in the same radial direction. We apply "\textit{d(d==0)=[]}" to delete "$0$" items and \textit{d=d*360} to reset the unit to $m$.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=8cm]{figures/code_distance.png}\\
+  \textbf{\caption{Code to Figure out the Distance}}
+  \label{code_distance}
+\end{figure}
+
+According to satellite telemetry data\cite{satellitedata}, the altitude of the dry land in the downstream of the Kariba Dam is $390m$, and the altitude of the dam's water surface is $488m$. So the depth ($h$) of the lake is $98m$. We use the software \textit{Mathematica} again to simplify the \textbf{\textit{Expression (1)}}.
+
+$$Simplify\left[\frac{-d^3+4dh^2+4\left(d^2+4h^2\right)tan^{-1}\left(\frac{4dh}{d^2-4h^2}\right)}{16h}/.\left\{h\to98\right\}\right]$$
+
+\begin{equation}\label{Out3}
+  Out[3]=\frac{38416d-d^3+4\left(38416+d^2\right)arctan\left[\frac{392d}{-38416+d^2}\right]}{1568}
+\end{equation}
+
+We program the code below to calculate the area of each cross section of the lake (41428 elements in $d$).
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=13cm]{figures/code_area.png}\\
+  \textbf{\caption{Code to Figure out the Area of Each Cross Section}}
+  \label{code_area}
+\end{figure}
+
+The central angle of the approximate arc (The overall appearance of the Kariba Lake) is about $52.7^{\circ}$. The length of the arc is about $225164m$.
+
+We define a temporary variable $x$:
+
+$$x=(1:(225164/41428):225164);$$
+
+Then we apply \textit{trapezoidal integration} to get the volume of the lake.
+
+$$V_1=trapz(x,S);$$
+
+So the volume we get is $1.36*10^{16} m^3$, which has a bit large difference between the data in reality.
+
+\subsubsection{Correct our Assumption}
+
+We check the process of measuring the volume of the lake , and we suppose the error is caused by the assumption that the bottom of the lake is round and is a part of a circle. So we will correct our model.
+
+We know the scalar equation to describe a water droplet on the plane is: ($x$ is a temporary variable)
+
+$$\frac{d^2h(x)}{d(x^2)}+\left(\left(\frac{dh}{dx}\right)^2+1\right)^\frac{3}{2}\left(1-h(x)\right)=0$$
+
+We suppose the bottom of the lake is like the section of the water droplet. So we know:$h(0)=0,h(d)=0$, and the area of the water droplet section is $\int_0^d h[x] dx$. We use \textit{MATLAB} to solve the boundary value differential equation numerical solution to estimate the cross-sectional area. Let $y_1(x)=h(x),y_2(x)=\frac{dh(x)}{dx}$. And we transform the above differential equation into two first-order ordinary differential equations:
+
+\[\begin{cases}
+\frac{dy_1(x)}{dx}=y_2(x)\\
+\frac{dy_2(x)}{dx}=\left(y_1(x)-1\right)\left(y_2\left(x\right)^2+1\right)^\frac{3}{2}
+\end{cases}\]
+
+The above equations are represented by the following \textit{M function}:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=7cm]{figures/mfunction1.png}\\
+  %\textbf{\caption{M Function}}
+  \label{mfunction1}
+\end{figure}
+
+The boundary condition is specified by the residual function, and the boundary condition can be expressed as the following \textit{M function}:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=5cm]{figures/mfunction2.png}\\
+  %\textbf{\caption{M Function}}
+  \label{mfunction2}
+\end{figure}
+
+Here we use the following M function as the initial guess solution:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=7cm]{figures/mfunction3.png}\\
+  %\textbf{\caption{M Function}}
+  \label{mfunction3}
+\end{figure}
+
+The numerical solution of the unit length of the differential equation is obtained by the following programme:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=7cm]{figures/mfunction4.png}\\
+  %\textbf{\caption{M Function}}
+  \label{mfunction4}
+\end{figure}
+
+$$x=sol.x;$$
+$$y=sol.y(1,:);$$
+
+The corresponding values of $x$ and $h$ of the 5000 group are plotted in a 1*1 \textit{Cartesian Coordinate} as follows:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=6cm]{figures/correctmodel.png}\\
+  \textbf{\caption{Corrected Model}}
+  \label{correctmodel}
+\end{figure}
+
+Use the following code to make the group values proportional to river width $d$. Because the deepest river is 128m deep and the widest river is 32km wide, the bottom of the lake is approximately symmetrical, so the 1/60 scale is used as the correction coefficient to get the depth scatter point of each section, and we apply discrete integral to get the approximate area ($S$) of each section.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=5cm]{figures/code_areacorrect.png}\\
+  \textbf{\caption{Code to Get Correct Section Area}}
+  \label{code_areacorrect}
+\end{figure}
+
+According to the result, the capacity of the lake ($V_2$) is about $1.001*10^{11}m^3$. Compared with the data in reality ($1.010*10^{11}m^3$), we know the error is $0.9\%$. The error is acceptable. That's to say, the model can be used.
+
+\subsection{Model \uppercase\expandafter{\romannumeral2}: Build Three Small Dams Over the Lake}
+
+Firstly, we decide to find some narrow place with large altitude difference under the lake so that we can build small dams over the lake. So we use the following function to plot the topography of the lake bottom. Variable $hm$ is the maximum depth of each lake section
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=4cm]{figures/code_topography.png}\\
+  \textbf{\caption{Code to Get Topography of the Lake Bottom}}
+  \label{code_topography}
+\end{figure}
+
+Divide the length of the approximate arc (The shape of the Kariba Lake, $225164m$) into 41428 parts as the X axis, and let $-hm$ be Y axis to create coordinate system.
+
+Plot the \textbf{depth} picture of the lake:
+
+$$x=(1:225164/41428:225164);$$
+$$hm=-hm;$$
+$$plot(x,hm,'');$$
+
+And plot the \textbf{width} picture of the lake:
+
+$$plot(x,d,'');$$
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/depth.png}
+    \caption{Depth of the Lake}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/width.png}
+    \caption{Width of the Lake}
+  \end{minipage}
+\end{figure}
+
+Our suggestion is: \textbf{Build three small dams on the three point: 24km from the west of the lake ($17^{\circ}33'42'' S, 27^{\circ}21'42'' E$), 161km from the west of the lake ($16^{\circ}50'18'' S, 28^{\circ}05'42'' E$), and the old site of Kariba Dam ($16^{\circ}31'20'' S, 28^{\circ}45'42'' E$) respectively. }
+
+\subsection{Impacts of Number of Dams on Costs and Benefits}
+
+The impact of the number of dams on costs and benefits will be discussed below.
+
+\subsubsection{Facts We Know}
+
+\begin{itemize}
+  \item \textbf{The location we choose should be midstream or upstream.} \textit{Lago de Cabora Bassa} downstream is a plain zone. The river there is wide, and no steep mountains there. So building dams there is not wise.
+  \item \textbf{The cost of the hydropower station above 10MW is positively correlated with its capacity.}
+  \item \textbf{The cost of management and maintenance per unit of time per hydropower station is the same as we assumed.}
+  \item \textbf{The expression of hydropower station capacity is: }$C=g\cdot Q\cdot H\cdot\eta$. It's easy to know: $g\cdot Q\cdot\eta=14367$\cite{capacity}. So the simplified expression is $C=14367\cdot H$
+\end{itemize}
+
+In addition, let $n$ be the number of hydropower station we will build, $h_1, h_2, h_3, \cdots, h_n$ be the height difference of each station.
+
+\subsubsection{Find the Proper Number of the Stations}
+
+Our goals are:
+
+\begin{itemize}
+  \item Minimize the number of the hydropower station($n$).
+  \item Maximize the capacity. Also, the capacity should not be lower than $1839MW$ ($H$ no less than $128m$).
+  \item Height difference of each dam ($h_i$) is no more than $40m$.
+  \item From a security point of view, each element in the column vector $h$ should be as small as possible.
+  \item In order to facilitate the management of water flow, the flow rate of upstream should not be smaller than that of downstream. In the mean time, to prevent any changes on the coefficient $14367$, the elements in $h$ should increase gradually.
+\end{itemize}
+
+Our strategy is to compare impacts of the dams number from $5$ to $25$ with linear programming method. The following is the mathematical model.
+
+\[s.t.\begin{cases}
+max sum(h)/n;\\
+Sum(h)\ge 128;\\
+h_i>40, i=1,2,\cdots,n;\\
+h_{i+1}>h_i, i=1,2,\cdots,n-1;
+\end{cases}\]
+
+\textit{MATLAB} code:
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=12cm]{figures/code_pjzb.png}\\
+  %\textbf{\caption{}}
+  \label{code_pjzb}
+\end{figure}
+
+The result is: \textbf{There is no significant difference in revenue and expenditure between each strategy ($5$ dams to $25$ dams)}, and each strategy is in compliance with safety requirements.
+
+So, considering the hydroelectric power station of the height difference and the water capacity needs, the establishment of 10 small dams will be in the following areas.
+
+\begin{table}[H]
+  \centering
+  \textbf{\caption{Places We Choose}}
+  \begin{tabular}{c c c c}
+    \midrule[1pt]
+    Serial Number  & South Latitude & East Longitude  & Width of the River ($m$)\\
+    \midrule[1pt]
+    $0$ & $15^{\circ}37'22.23''$ & $29^{\circ}54'4.14''$ & $240$ \\
+    $1$ & $16^{\circ}31'19.71''$ & $28^{\circ}45'42.18''$ & $450$ \\
+    $2$ & $16^{\circ}51'1.97''$ & $28^{\circ}5'50.68''$ & \textit{In the Kariba Lake} \\
+    $3$ & $17^{\circ}49'19.86''$ & $27^{\circ}8'49.04''$ & \textit{In the Kariba Lake} \\
+    $4$ & $17^{\circ}58'32.73''$ & $17^{\circ}58'32.73''$ & $150$ \\
+    $5$ & $17^{\circ}56'0.29''$ & $26^{\circ}19'6.94''$ & $120$ \\
+    $6$ & $17^{\circ}55'14.14''$ & $26^{\circ}7'50.71''$ & $80$ \\
+    $7$ & $17^{\circ}58'4.93''$ & $26^{\circ}5'42.76''$ & $300$ \\
+    $8$ & $17^{\circ}58'35.12''$ & $26^{\circ}0'50.41''$ & $80$ \\
+    $9$ & $17^{\circ}59'1.92''$ & $25^{\circ}54'12.64''$ & $50$ \\
+    $10$ & $17^{\circ}58'9.34''$ & $25^{\circ}51'43.70''$ & $60$ \\
+    $11$ & $25^{\circ}51'43.70''$ & $25^{\circ}50'44.76''$ & $90$ \\
+    $12$ & $17^{\circ}55'35.91''$ & $25^{\circ}51'30.82''$ & $130$ \\
+    \midrule[1pt]
+  \end{tabular}
+  \label{place}
+\end{table}
+
+The following is a brief description of the advantages of the thirteen dams selected.
+
+\begin{itemize}
+  \item \textbf{Dam.0} The river is wide, the depth will be larger, and the height difference of the river on both sides is also large. So the water resource seems to be abundant. There is a tributary at the west side, and the great depression there can storage water. Besides, there is no city nearby, so the exist of the dam will not pose a potential threat to human life.
+  \item \textbf{Dam.1} It's the site where the Kariba Dam locates. Building a new small dam after the demolition of the old one will reduce the original dam discharge time and reduce the risk of running. Here near Kariba County, so it's inadvisable to construct large dams but advisable to replace it with a smaller dam.
+  \item \textbf{Dam.2} Here is located in Kariba Lake, according to the topographical model we established before, the height difference is large and two sides of the river are close to each other. So a dam with a larger capacity can be built at a lower cost. In addition, after the removal of the Kariba dam, the east lake surface will decrease. In this way, it can play a role as a risk buffer. In addition, a large lake on the west side can store a large amount of water resources, effectively helps the downstream drought resistance.
+  \item \textbf{Dam.3} Located on the west side of the Kaliba Lake, this site has a narrow estuary. The height difference  of the lake bottom is also large. Apart from this, there is an existing reservoir which can reduce the construction risk. The decrease of the down stream can also provide protection for the Kariba County when flood peak comes.
+  \item \textbf{Dam.4} Tributary importing from the south can compensate the flow loss caused by the dam upstream. What's more there is a natural depression on the west side storing water. Increasing the number of dams to store water will enhance the buffer capacity of flood peak and the capability of resisting flood.
+  \item \textbf{Dam.5} The dam is in a canyon, and both sides of the mountain constitute a natural dam, effectively reducing the construction costs and operational risks. It locates in remote mountainous areas, so no one lives there. When the danger occurs, it can provide early warning for the downstream. In addition, reservoirs can be built in the valley to store water resources.
+  \item \textbf{Dam.6, 7, 8, 9} The water flow is more rapid at this site and the mountains nearby are rugged. Natural dam can be found here. Due to the remote location, no harm will be caused here. Building dams here can also regulate the climate humidity, which is conducive to the nearby ecological improvement.
+  \item \textbf{Dam.10} The remaining water resources can be used here, which increases energy efficiency.
+  \item \textbf{Dam.11} Located at the downstream of \textit{Victoria Falls City}, reducing the storage capacity of Dam 12 and reducing the potential danger of Dam 12 to the city.
+  \item \textbf{Dam.12} Located at the Great Falls of Victoria, the great falls can provide enormous water resources and provide electricity for the neighboring cities, resulting in huge economic benefits.
+\end{itemize}
+
+\textbf{The following is the distribution of the 13 dams:}
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=10cm]{figures/distribution.png}\\
+  \textbf{\caption{Distribution}}
+  \label{distribution}
+\end{figure}
+
+
+\subsection{Model \uppercase\expandafter{\romannumeral3}: Hydrology Forecast}
+
+We make a table of the flow data of the Zambezi River  varied with time from December 13, 2007 to December 29, 2016\cite{data} and sort the data.
+
+The vector $flow$ is used to store the data, and the abscissa $x$ is divided into 450 parts (the same amount of data).
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=10cm]{figures/flowdata.png}\\
+  \textbf{\caption{Flow Data}}
+  \label{flowdata}
+\end{figure}
+
+Water flow is related to wind speed, temperature and precipitation in the last three months as we assumed in the section \textbf{\textit{Assumptions}}. So we import the data\cite{data} above into variable $windspeed$, $tem$, $rain$ respectively.
+
+Then we process the data by using \textit{Excel} to align the date, add the serial number, save them into \textit{.xls} form and import them into \textit{MATLAB}.
+
+We apply \textit{spline function} to carry out \textbf{the three spline interpolation}. Finally we draw the chart of precipitation change, temperature change and wind speed change.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[htbp]{0.35\textwidth}
+    \centering
+    \includegraphics[width=5.5cm]{figures/precipitationchange.png}
+    \caption{Precipitation}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.3\textwidth}
+    \centering
+    \includegraphics[width=4cm]{figures/temperaturechange.png}
+    \caption{Temperature}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.3\textwidth}
+    \centering
+    \includegraphics[width=4cm]{figures/windspeedchange.png}
+    \caption{Wind Speed}
+  \end{minipage}
+\end{figure}
+
+
+We design \textbf{\textit{Code 1}} in section  \textbf{\textit{Appendix}} to put the relevant variables and the corresponding water flow in the same row.
+
+According to MATLAB neural network data format, the flow data are placed on the last column and we delete the last eleventh row of data in order to verify the model. (\textbf{\textit{Code 2}} in \textit{\textbf{Appendix}})
+
+The radial basis function neural network and \textbf{\textit{Back Propagation}} neural network are used to predict the Zambia River flow and the variance of the radial basis function neural network and the prediction error.(\textbf{\textit{Code 3}} in \textit{\textbf{Appendix}})
+
+After several simulations, the BP neural network forecasting error is irregularly fluctuated between $8\%$ and $120\%$. The variance of the radial basis function neural network and the original data is stable to $3*10^{-29}$, and the prediction error is stable in $55.51\%$, we can not accept such a low accuracy.
+
+After detailed analysis, the error may be derived from the interaction between independent variables, we use the \textbf{\textit{Code 4}} radial basis function neural network to predict the independent variables and the dependent variable.
+
+The fitting variance is $10^{-34}$, and the precision of single item prediction is improved to $1.1\%$. The model was used to further predict $106$ data (about 2 years).(\textbf{\textit{Code 5}} in \textit{\textbf{Appendix}})
+
+\subsection{Model \uppercase\expandafter{\romannumeral4}: Ideal Year Model}
+
+We assume there is an \textbf{\textit{ideal year}} when the water flow is in accordance with the general rules of seasonal Zambezi River Basin.(\textbf{\textit{Code 6}} in \textit{\textbf{Appendix}})
+
+Draw the change of water flow in the ideal year.
+
+\begin{figure}[H]
+  \centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=8cm]{figures/idealyear.png}\\
+  \textbf{\caption{Flow Data in Ideal Year}}
+  \label{idealyear}
+\end{figure}
+
+Discrete integration of these data, and the mean value is the average flow. So the result is $471.36m^3/s$.
+
+We found that the Zambezi River Basin in the first month of spring and third months of summer is easy to reach the flood season, while the flow in the other time is relatively stable in $417m^3/s$, which will provide reference for water management of our plan. The maximum flow of history is $1864m^3/s$. At the same time, in order to resist drought, the minimum water flow in the history of is $198.7m^3/s$.
+
+Import the nearby contour map, and use the Monte Carlo method to obtain the reservoir area. Then we apply the design drop to calculate the reservoir capacity.
+
+\begin{table}[H]
+  \centering
+  %\textbf{\caption{}}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Dam} & \textbf{Reservoir Area} & \textbf{Reservoir Capacity} \\
+    \hline
+    $0$ & $5.896*10^8$ & $365.6*10^8$\\
+    \hline
+    $1-3$ & $14.141*10^8$ & $749.5*10^8$\\
+    \hline
+    $4-12$ & $15.892*10^8$ & $2525.8*10^8$\\
+    \hline
+    $Total$ & $35.929*10^8$ & $3640.9*10^8$\\
+    \hline
+  \end{tabular}
+  %\label{}
+\end{table}
+
+The water management capacity that we provide for the dam is currently 360 percent of the original Kaliba dam, so this is a good solution for water management and safety.
+
+We use the previous lake model and take the length of the \textbf{Dam 2} ($400m$) and \textbf{Dam 3} ($200m$), then we obtain the depth.
+Finally, according to the \textbf{Corrected Lake Model}, the thirteen dam width, depth and drop table are as follows:
+
+
+
+\begin{table}[H]
+  \centering
+  %\textbf{\caption{}}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Dam} & \textbf{Width}($m$) & \textbf{Depth Predicted}($m$) & \textbf{Designed Drop}($m$) & \textbf{Capacity}($kW$)\\
+    \hline
+    $0$ & $270$ & $32.13$ & $62$ & $123491.6$ \\
+    $1$ & $470$ & $55.93$ & $56$ & $111540.8$ \\
+    $2$ & $400$ & $47.60$ & $53$ & $105565.4$ \\
+    $3$ & $200$ & $23.80$ & $50$ & $99590$ \\
+    $4$ & $170$ & $20.23$ & $80$ & $159344$ \\
+    $5$ & $120$ & $14.28$ & $114$ & $227065.2$ \\
+    $6$ & $90$ & $10.71$ & $76$ & $151376.8$ \\
+    $7$ & $280$ & $33.32$ & $73$ & $145401.4$ \\
+    $8$ & $70$ & $8.33$ & $68$ & $135442.4$ \\
+    $9$ & $110$ & $13.09$ & $53$ & $105565.4$ \\
+    $10$ & $210$ & $24.99$ & $74$ & $147393.2$ \\
+    $11$ & $80$ & $9.52$ & $59$ & $117516.2$ \\
+    $12$ & $180$ & $21.42$ & $51$ & $101581.8$ \\
+    \hline
+  \end{tabular}
+  %\label{}
+\end{table}
+
+At this point if we use the original turbine, the total installed capacity is $1730.9MW$. But if we use more efficient turbine, the energy conversion rate can be increased by $9.8\%$, and the installed capacity will be $1934.5MW$.
+
+\textbf{When the flood comes}, our dam uses the following equation to store water.($k$ refers to reserved volume ratio)
+
+\begin{equation*}\label{storewater}
+  C=(Q-q)\frac{t}{k}
+\end{equation*}
+
+\begin{equation}\label{storewater1}
+  t=\frac{k\cdot C}{Q-q}
+\end{equation}
+
+Substitute into the numerical, so $t=5.23*10^5s\approx6days$
+
+\textbf{When the drought continued}, the water releases. Transform the \textbf{\textit{Equation (4)}}. So $t=2.67*10^6s\approx30.6days$
+
+\section{Management Strategy}
+
+When the flood peak comes, the dams from the downstream to the upstream storage water one by one, buffering flood peak, playing the role of flood mitigation. When the drought comes, the dam release the water, playing a role in drought relief.In the routine maintenance, the dam flow can be controlled at about $400m^3/s$, so as to improve the dry climate and improve the local ecological environment.
+
+\section{Strengths and Weaknesses}
+
+\subsection{Strengths}
+\begin{itemize}
+  \item Dams can be connected together into the Zambezi River Basin power grid to provide electricity to the region along the river, and create the benefits.
+  \item The safety of the multi-dam system is very good. The dams and their parameters have been determined by our sophisticated calculation and investigation. We haven't observed that the multi-dam system is a threat to the surrounding areas within the model error range. Therefore, this is an excellent multi-dam system.
+  \item We consider the influence of wind, rain, temperature and other natural environment on the flow of water in the vicinity of the Zambezi River and provide the Zambezi River hydrological change within a certain error range. This multi-input-output system greatly increases the reliability of the model
+\end{itemize}
+
+\subsection{Weaknesses}
+\begin{itemize}
+  \item The data of this model is not enough, and some data are interpolated by spline interpolation.
+  \item In this model, radial basis function neural network is used to predict flow rate data, the number of neurons and the approach speed of radial basis function introduce error to a certain extent. We suggest analysing the relationship between the variables at physical level, rather than using the non-model algorithm.
+  \item This model uses a large number of approximate calculation. We recommend to fully consider the error correction in the case of sufficient time to achieve the best decision effect.
+  \item Power generation is lower than the original dam.
+\end{itemize}
+
+
+
+\begin{thebibliography}{99}
+\bibitem{Karibawiki1}Wikipedia. Modified on 12 January 2017, at 04:42.\\https://en.wikipedia.org/wiki/Kariba\_Dam
+\bibitem{IRMSAIMPACT}Impact of the Failure of the Kariba Dam.\\http://www.irmsa.org.za/search/all.asp?bst=kariba
+\bibitem{Zambia's per capita income}Wolfram Research.
+\bibitem{repairing cost}http://www.chinanews.com/gj/2014/03-26/5996173.shtml
+\bibitem{small dam1}http://service.hunan.gov.cn
+\bibitem{small dam2}http://dsb.gzdsw.com/html/2011-08/02/content\_40894.htm
+\bibitem{electricity price}http://www.chinamachinex.com/electricity/southafrica/105.html
+\bibitem{satellitedata}Google Earth.
+\bibitem{capacity}http://www.irmsa.org.za/search/all.asp?bst=kariba
+\bibitem{data}Wolfram Pro.
+\end{thebibliography}
+
+\newpage
+
+\begin{center}
+  \Large \textbf{Appendix}
+\end{center}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/acode1.png}
+    \textbf{\caption{Code 1}}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=5cm]{figures/acode2.png}
+    \textbf{\caption{Code 2}}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/acode3.png}
+    \textbf{\caption{Code 3}}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/acode4.png}
+    \textbf{\caption{Code 4}}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/acode5.png}
+    \textbf{\caption{Code 5}}
+  \end{minipage}
+  \begin{minipage}[htbp]{0.4\textwidth}
+    \centering
+    \includegraphics[width=6.4cm]{figures/acode6.png}
+    \textbf{\caption{Code 6}}
+  \end{minipage}
+\end{figure}
+
+
+\end{document}
